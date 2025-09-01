@@ -1,12 +1,19 @@
-package com.iot;
+package com.telecom;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AppTest {
+class CallManagerTest {
+
     @Test
-    public void testAddNumbers() {
-        App app = new App();
-        assertEquals(5, app.addNumbers(2, 3));
+    void testCallFlow() {
+        CallManager manager = new CallManager();
+        manager.startCall("CALL001");
+        manager.startCall("CALL002");
+
+        assertEquals(2, manager.getActiveCallCount());
+
+        manager.endCall("CALL001");
+        assertEquals(1, manager.getActiveCallCount());
     }
 }
